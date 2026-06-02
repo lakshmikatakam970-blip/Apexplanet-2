@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Advanced Responsive Web Application</title>
+
+    <style>
+
+        /* =========================
+           GENERAL STYLING
+        ========================== */
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f4f4;
+            color:#333;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header{
+            background:#222;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        header h1{
+            font-size:40px;
+        }
+
+        header p{
+            margin-top:10px;
+            font-size:18px;
+        }
+
+        /* =========================
+           NAVIGATION BAR
+        ========================== */
+
+        nav{
+            background:#444;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            padding:15px;
+            flex-wrap:wrap;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            font-size:18px;
+        }
+
+        nav a:hover{
+            color:yellow;
+        }
+
+        /* =========================
+           MAIN CONTAINER
+        ========================== */
+
+        .container{
+            width:90%;
+            margin:auto;
+            padding:20px;
+        }
+
+        /* =========================
+           QUIZ SECTION
+        ========================== */
+
+        .quiz-box{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+            margin-top:20px;
+        }
+
+        .quiz-box h2{
+            color:#4CAF50;
+            margin-bottom:20px;
+        }
+
+        .quiz-box button{
+            margin-top:20px;
+            padding:10px 20px;
+            background:#4CAF50;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        .quiz-box button:hover{
+            background:#45a049;
+        }
+
+        /* =========================
+           IMAGE CAROUSEL
+        ========================== */
+
+        .carousel{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-top:30px;
+            text-align:center;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        .carousel img{
+            width:100%;
+            max-width:600px;
+            height:350px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        .carousel button{
+            margin:10px;
+            padding:10px 20px;
+            background:#2196F3;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        /* =========================
+           API SECTION
+        ========================== */
+
+        .api-section{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-top:30px;
+            text-align:center;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        .api-section button{
+            padding:10px 20px;
+            background:#ff5722;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            margin-top:15px;
+        }
+
+        #joke{
+            margin-top:20px;
+            font-size:20px;
+        }
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================== */
+
+        @media(max-width:900px){
+
+            header h1{
+                font-size:32px;
+            }
+
+            .carousel img{
+                height:280px;
+            }
+
+        }
+
+        @media(max-width:600px){
+
+            nav{
+                flex-direction:column;
+                align-items:center;
+            }
+
+            header h1{
+                font-size:26px;
+            }
+
+            body{
+                font-size:14px;
+            }
+
+            .carousel img{
+                height:220px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <h1>Advanced Responsive Web Application</h1>
+
+        <p>
+            HTML | CSS | JavaScript | API Integration
+        </p>
+
+    </header>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav>
+
+        <a href="#">Home</a>
+        <a href="#">Quiz</a>
+        <a href="#">Gallery</a>
+        <a href="#">API</a>
+
+    </nav>
+
+    <!-- =========================
+         MAIN CONTAINER
+    ========================== -->
+
+    <div class="container">
+
+        <!-- =========================
+             QUIZ SECTION
+        ========================== -->
+
+        <div class="quiz-box" id="quiz-box">
+
+            <h2>Interactive Quiz</h2>
+
+            <p id="question"></p>
+
+            <br>
+
+            <input type="radio" name="quiz">
+            <label id="option1"></label>
+
+            <br><br>
+
+            <input type="radio" name="quiz">
+            <label id="option2"></label>
+
+            <br><br>
+
+            <input type="radio" name="quiz">
+            <label id="option3"></label>
+
+            <br><br>
+
+            <input type="radio" name="quiz">
+            <label id="option4"></label>
+
+            <br><br>
+
+            <button onclick="checkAnswer()">
+                Next Question
+            </button>
+
+        </div>
+
+        <!-- =========================
+             IMAGE CAROUSEL
+        ========================== -->
+
+        <div class="carousel">
+
+            <h2>Image Carousel</h2>
+
+            <br>
+
+            <img id="carouselImage"
+            src="https://picsum.photos/id/1015/600/350">
+
+            <br>
+
+            <button onclick="previousImage()">
+                Previous
+            </button>
+
+            <button onclick="nextImage()">
+                Next
+            </button>
+
+        </div>
+
+        <!-- =========================
+             API SECTION
+        ========================== -->
+
+        <div class="api-section">
+
+            <h2>Random Joke API</h2>
+
+            <p>
+                Click below to fetch a random joke.
+            </p>
+
+            <button onclick="getJoke()">
+                Get Joke
+            </button>
+
+            <div id="joke"></div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // =========================
+        // QUIZ QUESTIONS
+        // =========================
+
+        let quizQuestions = [
+
+            {
+                question: "What does HTML stand for?",
+
+                options: [
+                    "Hyper Text Markup Language",
+                    "High Transfer Machine Language",
+                    "Hyperlinks Text Management Language",
+                    "Home Tool Markup Language"
+                ],
+
+                answer: 0
+            },
+
+            {
+                question: "Which language is used for styling webpages?",
+
+                options: [
+                    "Python",
+                    "CSS",
+                    "Java",
+                    "C++"
+                ],
+
+                answer: 1
+            },
+
+            {
+                question: "Which language is used for webpage interactivity?",
+
+                options: [
+                    "JavaScript",
+                    "HTML",
+                    "SQL",
+                    "CSS"
+                ],
+
+                answer: 0
+            },
+
+            {
+                question: "Which HTML tag is used for images?",
+
+                options: [
+                    "<image>",
+                    "<img>",
+                    "<pic>",
+                    "<src>"
+                ],
+
+                answer: 1
+            },
+
+            {
+                question: "Which CSS property changes text color?",
+
+                options: [
+                    "font-color",
+                    "text-color",
+                    "color",
+                    "background-color"
+                ],
+
+                answer: 2
+            }
+
+        ];
+
+        // =========================
+        // QUIZ VARIABLES
+        // =========================
+
+        let currentQuestion = 0;
+
+        let score = 0;
+
+        // =========================
+        // LOAD QUESTION
+        // =========================
+
+        function loadQuestion(){
+
+            let q = quizQuestions[currentQuestion];
+
+            document.getElementById("question").innerHTML =
+            q.question;
+
+            document.getElementById("option1").innerHTML =
+            q.options[0];
+
+            document.getElementById("option2").innerHTML =
+            q.options[1];
+
+            document.getElementById("option3").innerHTML =
+            q.options[2];
+
+            document.getElementById("option4").innerHTML =
+            q.options[3];
+
+        }
+
+        // =========================
+        // CHECK ANSWER
+        // =========================
+
+        function checkAnswer(){
+
+            let options =
+            document.getElementsByName("quiz");
+
+            let selectedAnswer = -1;
+
+            for(let i = 0; i < options.length; i++){
+
+                if(options[i].checked){
+
+                    selectedAnswer = i;
+
+                }
+
+            }
+
+            // No answer selected
+            if(selectedAnswer === -1){
+
+                alert("Please select an option!");
+
+                return;
+
+            }
+
+            // Correct answer check
+            if(selectedAnswer ===
+               quizQuestions[currentQuestion].answer){
+
+                score++;
+
+            }
+
+            // Next question
+            currentQuestion++;
+
+            // Clear options
+            for(let option of options){
+
+                option.checked = false;
+
+            }
+
+            // Load next question
+            if(currentQuestion < quizQuestions.length){
+
+                loadQuestion();
+
+            }
+
+            else{
+
+                document.getElementById("quiz-box").innerHTML =
+                `
+                <h2>Quiz Completed!</h2>
+
+                <h3>Your Score: ${score} / ${quizQuestions.length}</h3>
+
+                <br>
+
+                <button onclick="location.reload()">
+                    Restart Quiz
+                </button>
+                `;
+            }
+
+        }
+
+        // Start Quiz
+        loadQuestion();
+
+        // =========================
+        // IMAGE CAROUSEL
+        // =========================
+
+        let images = [
+
+            "https://picsum.photos/id/1015/600/350",
+
+            "https://picsum.photos/id/1016/600/350",
+
+            "https://picsum.photos/id/1018/600/350",
+
+            "https://picsum.photos/id/1020/600/350"
+
+        ];
+
+        let currentImage = 0;
+
+        function showImage(){
+
+            document.getElementById("carouselImage").src =
+            images[currentImage];
+
+        }
+
+        function nextImage(){
+
+            currentImage++;
+
+            if(currentImage >= images.length){
+
+                currentImage = 0;
+
+            }
+
+            showImage();
+
+        }
+
+        function previousImage(){
+
+            currentImage--;
+
+            if(currentImage < 0){
+
+                currentImage = images.length - 1;
+
+            }
+
+            showImage();
+
+        }
+
+        // =========================
+        // FETCH RANDOM JOKE API
+        // =========================
+
+        async function getJoke(){
+
+            try{
+
+                let response = await fetch(
+                    "https://official-joke-api.appspot.com/random_joke"
+                );
+
+                let data = await response.json();
+
+                document.getElementById("joke").innerHTML =
+                `
+                <b>${data.setup}</b>
+                <br><br>
+                ${data.punchline}
+                `;
+
+            }
+
+            catch(error){
+
+                document.getElementById("joke").innerHTML =
+                "Failed to fetch joke!";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
